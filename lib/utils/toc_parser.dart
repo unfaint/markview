@@ -17,7 +17,10 @@ class TocEntry {
 /// Parses the headings from raw Markdown content and returns a [TocEntry] list.
 List<TocEntry> parseToc(String markdown) {
   final entries = <TocEntry>[];
-  final headingRegex = RegExp(r'^(#{1,6})\s+(.+?)(?:\s+#+)?\s*$', multiLine: true);
+  final headingRegex = RegExp(
+    r'^(#{1,6})\s+(.+?)(?:\s+#+)?\s*$',
+    multiLine: true,
+  );
 
   for (final match in headingRegex.allMatches(markdown)) {
     final level = match.group(1)!.length;

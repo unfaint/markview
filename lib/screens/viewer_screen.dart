@@ -133,7 +133,9 @@ class _ViewerScreenState extends ConsumerState<ViewerScreen> {
         ),
         IconButton(
           icon: Icon(
-            _tocOpen ? Icons.format_list_bulleted : Icons.format_list_bulleted_outlined,
+            _tocOpen
+                ? Icons.format_list_bulleted
+                : Icons.format_list_bulleted_outlined,
           ),
           tooltip: 'Table of contents',
           onPressed: _toggleToc,
@@ -158,7 +160,8 @@ class _ViewerScreenState extends ConsumerState<ViewerScreen> {
 
     return CallbackShortcuts(
       bindings: {
-        const SingleActivator(LogicalKeyboardKey.keyF, control: true): _openSearch,
+        const SingleActivator(LogicalKeyboardKey.keyF, control: true):
+            _openSearch,
         const SingleActivator(LogicalKeyboardKey.keyF, meta: true): _openSearch,
         const SingleActivator(LogicalKeyboardKey.escape): _closeSearch,
       },
