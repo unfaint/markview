@@ -13,7 +13,7 @@ dependencies:
 
   # Markdown rendering (flutter_markdown_plus is the official successor to the
   # deprecated flutter_markdown package)
-  flutter_markdown_plus: ^0.1.0
+  flutter_markdown_plus: ^1.0.7
   markdown: ^7.2.2
 
   # Syntax highlighting inside code blocks
@@ -48,5 +48,3 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  assets:
-    - assets/
