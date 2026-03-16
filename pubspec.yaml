@@ -1,0 +1,51 @@
+name: markview
+description: A lightweight, cross-platform Markdown viewer.
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+  flutter: ">=3.22.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Markdown rendering
+  flutter_markdown: ^0.7.3
+  markdown: ^7.2.2
+
+  # Syntax highlighting inside code blocks
+  flutter_highlight: ^0.7.0
+  highlight: ^0.7.0
+
+  # File picking (Android, iOS, macOS, Windows, Linux, Web)
+  file_picker: ^8.1.2
+
+  # State management
+  flutter_riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.5
+
+  # Settings persistence
+  shared_preferences: ^2.3.2
+
+  # Open links in default browser / system handler
+  url_launcher: ^6.3.0
+
+  # Path utilities
+  path: ^1.9.0
+
+  # Icons
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  riverpod_generator: ^2.4.3
+  build_runner: ^2.4.13
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
