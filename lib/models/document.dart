@@ -2,10 +2,7 @@ import 'package:path/path.dart' as p;
 
 /// Represents an opened Markdown document.
 class Document {
-  const Document({
-    required this.path,
-    required this.content,
-  });
+  const Document({required this.path, required this.content});
 
   final String path;
   final String content;
@@ -24,9 +21,6 @@ class Document {
   bool get isEmpty => content.trim().isEmpty;
 
   Document copyWith({String? path, String? content}) {
-    return Document(
-      path: path ?? this.path,
-      content: content ?? this.content,
-    );
+    return Document(path: path ?? this.path, content: content ?? this.content);
   }
 }

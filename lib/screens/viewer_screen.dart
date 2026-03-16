@@ -194,15 +194,10 @@ class _ViewerScreenState extends ConsumerState<ViewerScreen> {
       children: [
         SizedBox(
           width: 240,
-          child: TocPanel(
-            entries: tocEntries,
-            onEntryTap: (_) {},
-          ),
+          child: TocPanel(entries: tocEntries, onEntryTap: (_) {}),
         ),
         const VerticalDivider(width: 1),
-        Expanded(
-          child: _markdownView(content),
-        ),
+        Expanded(child: _markdownView(content)),
       ],
     );
   }
@@ -272,10 +267,7 @@ class _ViewerScreenState extends ConsumerState<ViewerScreen> {
         child: Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 800),
-            child: MarkdownViewer(
-              key: _markdownKey,
-              content: content,
-            ),
+            child: MarkdownViewer(key: _markdownKey, content: content),
           ),
         ),
       ),
@@ -283,10 +275,10 @@ class _ViewerScreenState extends ConsumerState<ViewerScreen> {
   }
 
   IconData _themeIcon(ThemeMode mode) => switch (mode) {
-        ThemeMode.light => Icons.light_mode_outlined,
-        ThemeMode.dark => Icons.dark_mode_outlined,
-        ThemeMode.system => Icons.brightness_auto_outlined,
-      };
+    ThemeMode.light => Icons.light_mode_outlined,
+    ThemeMode.dark => Icons.dark_mode_outlined,
+    ThemeMode.system => Icons.brightness_auto_outlined,
+  };
 }
 
 class _ErrorView extends StatelessWidget {

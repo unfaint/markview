@@ -86,10 +86,10 @@ class _SearchOverlayState extends State<SearchOverlay> {
                 Text(
                   matchLabel,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: hasMatches
-                            ? null
-                            : Theme.of(context).colorScheme.error,
-                      ),
+                    color: hasMatches
+                        ? null
+                        : Theme.of(context).colorScheme.error,
+                  ),
                 ),
               IconButton(
                 icon: const Icon(Icons.keyboard_arrow_up, size: 20),

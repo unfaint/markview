@@ -25,11 +25,8 @@ class TocPanel extends StatelessWidget {
           child: Text(
             'No headings found',
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: Theme.of(context)
-                      .colorScheme
-                      .onSurface
-                      .withAlpha(102),
-                ),
+              color: Theme.of(context).colorScheme.onSurface.withAlpha(102),
+            ),
           ),
         ),
       );
@@ -93,8 +90,7 @@ class _TocTile extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   fontSize: isH1 ? 13 : 12,
-                  fontWeight:
-                      isH1 ? FontWeight.w600 : FontWeight.normal,
+                  fontWeight: isH1 ? FontWeight.w600 : FontWeight.normal,
                   color: color,
                 ),
               ),

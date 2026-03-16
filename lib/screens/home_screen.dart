@@ -22,11 +22,9 @@ class HomeScreen extends ConsumerWidget {
     ref.listen(documentProvider, (_, next) {
       next.whenData((doc) {
         if (doc != null) {
-          Navigator.of(context).push(
-            MaterialPageRoute<void>(
-              builder: (_) => const ViewerScreen(),
-            ),
-          );
+          Navigator.of(
+            context,
+          ).push(MaterialPageRoute<void>(builder: (_) => const ViewerScreen()));
         }
       });
     });
@@ -56,11 +54,7 @@ class HomeScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildBody(
-    BuildContext context,
-    WidgetRef ref,
-    List<String> history,
-  ) {
+  Widget _buildBody(BuildContext context, WidgetRef ref, List<String> history) {
     if (history.isEmpty) {
       return _EmptyState(
         onOpen: () => ref.read(documentProvider.notifier).pickAndOpen(),
@@ -75,8 +69,8 @@ class HomeScreen extends ConsumerWidget {
           child: Text(
             'Recent files',
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  color: Theme.of(context).colorScheme.onSurface.withAlpha(153),
-                ),
+              color: Theme.of(context).colorScheme.onSurface.withAlpha(153),
+            ),
           ),
         ),
         Expanded(
@@ -86,8 +80,7 @@ class HomeScreen extends ConsumerWidget {
               final path = history[index];
               return _RecentFileTile(
                 path: path,
-                onTap: () =>
-                    ref.read(documentProvider.notifier).openFile(path),
+                onTap: () => ref.read(documentProvider.notifier).openFile(path),
                 onRemove: () =>
                     ref.read(historyProvider.notifier).removeFile(path),
               );
@@ -99,16 +92,16 @@ class HomeScreen extends ConsumerWidget {
   }
 
   IconData _themeIcon(ThemeMode mode) => switch (mode) {
-        ThemeMode.light => Icons.light_mode_outlined,
-        ThemeMode.dark => Icons.dark_mode_outlined,
-        ThemeMode.system => Icons.brightness_auto_outlined,
-      };
+    ThemeMode.light => Icons.light_mode_outlined,
+    ThemeMode.dark => Icons.dark_mode_outlined,
+    ThemeMode.system => Icons.brightness_auto_outlined,
+  };
 
   String _themeTooltip(ThemeMode mode) => switch (mode) {
-        ThemeMode.light => 'Light theme',
-        ThemeMode.dark => 'Dark theme',
-        ThemeMode.system => 'System theme',
-      };
+    ThemeMode.light => 'Light theme',
+    ThemeMode.dark => 'Dark theme',
+    ThemeMode.system => 'System theme',
+  };
 }
 
 class _RecentFileTile extends StatelessWidget {
@@ -178,17 +171,15 @@ class _EmptyState extends StatelessWidget {
           Text(
             'No file open',
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  color:
-                      Theme.of(context).colorScheme.onSurface.withAlpha(153),
-                ),
+              color: Theme.of(context).colorScheme.onSurface.withAlpha(153),
+            ),
           ),
           const SizedBox(height: 8),
           Text(
             'Tap "Open file" to browse your Markdown files.',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color:
-                      Theme.of(context).colorScheme.onSurface.withAlpha(102),
-                ),
+              color: Theme.of(context).colorScheme.onSurface.withAlpha(102),
+            ),
           ),
         ],
       ),

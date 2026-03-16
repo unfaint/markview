@@ -7,9 +7,7 @@ void main() {
     testWidgets('renders plain text', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: MarkdownViewer(content: 'Hello, world!'),
-          ),
+          home: Scaffold(body: MarkdownViewer(content: 'Hello, world!')),
         ),
       );
       expect(find.textContaining('Hello, world!'), findsOneWidget);
@@ -18,9 +16,7 @@ void main() {
     testWidgets('renders heading', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: MarkdownViewer(content: '# My Heading'),
-          ),
+          home: Scaffold(body: MarkdownViewer(content: '# My Heading')),
         ),
       );
       expect(find.textContaining('My Heading'), findsOneWidget);
@@ -36,9 +32,7 @@ void main() {
 ''';
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: MarkdownViewer(content: md),
-          ),
+          home: Scaffold(body: MarkdownViewer(content: md)),
         ),
       );
       await tester.pump();
@@ -54,9 +48,7 @@ void main() {
 ''';
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: MarkdownViewer(content: md),
-          ),
+          home: Scaffold(body: MarkdownViewer(content: md)),
         ),
       );
       await tester.pump();

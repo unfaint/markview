@@ -7,8 +7,8 @@ import 'history_provider.dart';
 /// Holds the currently open [Document], or null when no file is open.
 final documentProvider =
     StateNotifierProvider<DocumentNotifier, AsyncValue<Document?>>(
-  (ref) => DocumentNotifier(ref),
-);
+      (ref) => DocumentNotifier(ref),
+    );
 
 class DocumentNotifier extends StateNotifier<AsyncValue<Document?>> {
   DocumentNotifier(this._ref) : super(const AsyncValue.data(null));

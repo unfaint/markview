@@ -5,8 +5,7 @@ const _kHistoryKey = 'recent_files';
 const _kMaxHistory = 10;
 
 /// Persisted list of recently opened file paths (newest first).
-final historyProvider =
-    StateNotifierProvider<HistoryNotifier, List<String>>(
+final historyProvider = StateNotifierProvider<HistoryNotifier, List<String>>(
   (ref) => HistoryNotifier(),
 );
 
@@ -21,9 +20,10 @@ class HistoryNotifier extends StateNotifier<List<String>> {
   }
 
   Future<void> addFile(String path) async {
-    final updated = [path, ...state.where((p) => p != path)]
-        .take(_kMaxHistory)
-        .toList();
+    final updated = [
+      path,
+      ...state.where((p) => p != path),
+    ].take(_kMaxHistory).toList();
     state = updated;
     final prefs = await SharedPreferences.getInstance();
     await prefs.setStringList(_kHistoryKey, updated);

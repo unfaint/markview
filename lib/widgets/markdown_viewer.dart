@@ -33,9 +33,7 @@ class MarkdownViewer extends StatelessWidget {
           ...md.ExtensionSet.gitHubFlavored.inlineSyntaxes,
         ],
       ),
-      builders: {
-        'code': _CodeBlockBuilder(isDark: isDark),
-      },
+      builders: {'code': _CodeBlockBuilder(isDark: isDark)},
       onTapLink: (text, href, title) async {
         if (href == null) return;
         final uri = Uri.tryParse(href);
@@ -74,10 +72,7 @@ class MarkdownViewer extends StatelessWidget {
         color: textColor,
         fontWeight: FontWeight.w600,
       ),
-      p: theme.textTheme.bodyLarge?.copyWith(
-        color: textColor,
-        height: 1.7,
-      ),
+      p: theme.textTheme.bodyLarge?.copyWith(color: textColor, height: 1.7),
       code: TextStyle(
         fontFamily: 'monospace',
         fontSize: 13,
@@ -88,45 +83,31 @@ class MarkdownViewer extends StatelessWidget {
         color: codeBackground,
         borderRadius: BorderRadius.circular(6),
         border: Border.all(
-          color: isDark
-              ? const Color(0xFF30363D)
-              : const Color(0xFFD0D7DE),
+          color: isDark ? const Color(0xFF30363D) : const Color(0xFFD0D7DE),
         ),
       ),
       blockquoteDecoration: BoxDecoration(
         border: Border(
           left: BorderSide(
-            color: isDark
-                ? const Color(0xFF30363D)
-                : const Color(0xFFD0D7DE),
+            color: isDark ? const Color(0xFF30363D) : const Color(0xFFD0D7DE),
             width: 4,
           ),
         ),
       ),
-      blockquotePadding:
-          const EdgeInsets.only(left: 16, top: 4, bottom: 4),
+      blockquotePadding: const EdgeInsets.only(left: 16, top: 4, bottom: 4),
       blockquote: theme.textTheme.bodyLarge?.copyWith(
-        color: isDark
-            ? const Color(0xFF8B949E)
-            : const Color(0xFF57606A),
+        color: isDark ? const Color(0xFF8B949E) : const Color(0xFF57606A),
         height: 1.7,
       ),
-      tableHead: TextStyle(
-        fontWeight: FontWeight.w600,
-        color: textColor,
-      ),
+      tableHead: TextStyle(fontWeight: FontWeight.w600, color: textColor),
       tableBody: TextStyle(color: textColor),
       tableBorder: TableBorder.all(
-        color: isDark
-            ? const Color(0xFF30363D)
-            : const Color(0xFFD0D7DE),
+        color: isDark ? const Color(0xFF30363D) : const Color(0xFFD0D7DE),
       ),
       horizontalRuleDecoration: BoxDecoration(
         border: Border(
           top: BorderSide(
-            color: isDark
-                ? const Color(0xFF30363D)
-                : const Color(0xFFD0D7DE),
+            color: isDark ? const Color(0xFF30363D) : const Color(0xFFD0D7DE),
           ),
         ),
       ),
@@ -146,8 +127,9 @@ class _CodeBlockBuilder extends MarkdownElementBuilder {
 
     final code = element.textContent;
     final className = element.attributes['class'] ?? '';
-    final language =
-        className.startsWith('language-') ? className.substring(9) : 'text';
+    final language = className.startsWith('language-')
+        ? className.substring(9)
+        : 'text';
 
     return _HighlightBlock(code: code, language: language, isDark: isDark);
   }
@@ -179,11 +161,7 @@ class _HighlightBlock extends StatelessWidget {
             height: 1.5,
           ),
         ),
-        Positioned(
-          top: 6,
-          right: 6,
-          child: _CopyButton(code: code),
-        ),
+        Positioned(top: 6, right: 6, child: _CopyButton(code: code)),
       ],
     );
   }
@@ -203,10 +181,7 @@ class _CopyButtonState extends State<_CopyButton> {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: Icon(
-        _copied ? Icons.check : Icons.copy_outlined,
-        size: 16,
-      ),
+      icon: Icon(_copied ? Icons.check : Icons.copy_outlined, size: 16),
       tooltip: _copied ? 'Copied!' : 'Copy code',
       onPressed: () async {
         await Clipboard.setData(ClipboardData(text: widget.code));
