@@ -275,10 +275,10 @@ class _ViewerScreenState extends ConsumerState<ViewerScreen> {
   }
 
   IconData _themeIcon(ThemeMode mode) => switch (mode) {
-    ThemeMode.light => Icons.light_mode_outlined,
-    ThemeMode.dark => Icons.dark_mode_outlined,
-    ThemeMode.system => Icons.brightness_auto_outlined,
-  };
+        ThemeMode.light => Icons.light_mode_outlined,
+        ThemeMode.dark => Icons.dark_mode_outlined,
+        ThemeMode.system => Icons.brightness_auto_outlined,
+      };
 }
 
 class _ErrorView extends StatelessWidget {

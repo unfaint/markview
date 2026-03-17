@@ -25,8 +25,8 @@ class TocPanel extends StatelessWidget {
           child: Text(
             'No headings found',
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: Theme.of(context).colorScheme.onSurface.withAlpha(102),
-            ),
+                  color: Theme.of(context).colorScheme.onSurface.withAlpha(102),
+                ),
           ),
         ),
       );

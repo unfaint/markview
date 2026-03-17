@@ -27,22 +27,22 @@ class MarkdownViewer extends StatelessWidget {
       child: MarkdownBody(
         data: content,
         selectable: true,
-      extensionSet: md.ExtensionSet(
-        md.ExtensionSet.gitHubFlavored.blockSyntaxes,
-        <md.InlineSyntax>[
-          md.EmojiSyntax(),
-          ...md.ExtensionSet.gitHubFlavored.inlineSyntaxes,
-        ],
-      ),
-      builders: {'code': _CodeBlockBuilder(isDark: isDark)},
-      onTapLink: (text, href, title) async {
-        if (href == null) return;
-        final uri = Uri.tryParse(href);
-        if (uri != null && await canLaunchUrl(uri)) {
-          await launchUrl(uri, mode: LaunchMode.externalApplication);
-        }
-      },
-      styleSheet: _buildStyleSheet(context),
+        extensionSet: md.ExtensionSet(
+          md.ExtensionSet.gitHubFlavored.blockSyntaxes,
+          <md.InlineSyntax>[
+            md.EmojiSyntax(),
+            ...md.ExtensionSet.gitHubFlavored.inlineSyntaxes,
+          ],
+        ),
+        builders: {'code': _CodeBlockBuilder(isDark: isDark)},
+        onTapLink: (text, href, title) async {
+          if (href == null) return;
+          final uri = Uri.tryParse(href);
+          if (uri != null && await canLaunchUrl(uri)) {
+            await launchUrl(uri, mode: LaunchMode.externalApplication);
+          }
+        },
+        styleSheet: _buildStyleSheet(context),
       ),
     );
   }
@@ -51,9 +51,8 @@ class MarkdownViewer extends StatelessWidget {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
     final textColor = theme.colorScheme.onSurface;
-    final codeBackground = isDark
-        ? const Color(0xFF161B22)
-        : const Color(0xFFF6F8FA);
+    final codeBackground =
+        isDark ? const Color(0xFF161B22) : const Color(0xFFF6F8FA);
 
     return MarkdownStyleSheet(
       h1: theme.textTheme.headlineMedium?.copyWith(
@@ -129,9 +128,8 @@ class _CodeBlockBuilder extends MarkdownElementBuilder {
 
     final code = element.textContent;
     final className = element.attributes['class'] ?? '';
-    final language = className.startsWith('language-')
-        ? className.substring(9)
-        : 'text';
+    final language =
+        className.startsWith('language-') ? className.substring(9) : 'text';
 
     return _HighlightBlock(code: code, language: language, isDark: isDark);
   }
