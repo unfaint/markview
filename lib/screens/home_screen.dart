@@ -1,5 +1,6 @@
-import 'dart:io';
+import 'dart:io' show File;
 
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path/path.dart' as p;
@@ -119,7 +120,8 @@ class _RecentFileTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final filename = p.basename(path);
     final directory = p.dirname(path);
-    final fileExists = File(path).existsSync();
+    // On web we can't check file existence or re-open by path.
+    final fileExists = !kIsWeb && File(path).existsSync();
 
     return ListTile(
       leading: Icon(

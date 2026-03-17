@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';
 import 'package:flutter_highlight/themes/github.dart';
-import 'package:flutter_highlight/themes/github-dark.dart';
+import 'package:flutter_highlight/themes/atom-one-dark.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:markdown/markdown.dart' as md;
 import 'package:url_launcher/url_launcher.dart';
@@ -22,10 +22,11 @@ class MarkdownViewer extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    return Markdown(
-      data: content,
-      selectable: true,
+    return Padding(
       padding: padding,
+      child: MarkdownBody(
+        data: content,
+        selectable: true,
       extensionSet: md.ExtensionSet(
         md.ExtensionSet.gitHubFlavored.blockSyntaxes,
         <md.InlineSyntax>[
@@ -42,6 +43,7 @@ class MarkdownViewer extends StatelessWidget {
         }
       },
       styleSheet: _buildStyleSheet(context),
+      ),
     );
   }
 
@@ -153,7 +155,7 @@ class _HighlightBlock extends StatelessWidget {
         HighlightView(
           code.trimRight(),
           language: language,
-          theme: isDark ? githubDarkTheme : githubTheme,
+          theme: isDark ? atomOneDarkTheme : githubTheme,
           padding: const EdgeInsets.all(16),
           textStyle: const TextStyle(
             fontFamily: 'monospace',

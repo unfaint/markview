@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../models/document.dart';
@@ -26,10 +27,26 @@ class DocumentNotifier extends StateNotifier<AsyncValue<Document?>> {
   }
 
   Future<void> pickAndOpen() async {
-    final path = await FileUtils.pickMarkdownFile();
-    if (path != null) {
-      await openFile(path);
-    }
+    final file = await FileUtils.pickMarkdownFile();
+    if (file == null) return;
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      final String content;
+      final String displayPath;
+      if (kIsWeb) {
+        final bytes = file.bytes;
+        if (bytes == null) throw StateError('No bytes available for web file.');
+        content = FileUtils.readFileBytes(bytes);
+        displayPath = file.name;
+      } else {
+        final path = file.path!;
+        content = await FileUtils.readFile(path);
+        displayPath = path;
+      }
+      final doc = Document(path: displayPath, content: content);
+      await _ref.read(historyProvider.notifier).addFile(displayPath);
+      return doc;
+    });
   }
 
   void close() => state = const AsyncValue.data(null);
